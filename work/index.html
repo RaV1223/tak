@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kryżówka</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="styles.css" /> 
+
+<style>
+
+:root {
+  font-size: 4vmin;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.puzzle .word {
+  display: flex;
+  justify-content: center;
+}
+
+.puzzle .word .letter {
+  width: 2em;
+  height: 2em;
+  margin: 0.05em;
+  background-color: #555;
+  color: white;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  order: 2;
+  right: 50%;
+}
+
+.puzzle .word .letter:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.puzzle .word .letter:last-child {
+  margin-right: auto;
+}
+
+.puzzle .word .pivot {
+  background-color: #ff006e;
+}
+
+.puzzle .word .pivot,
+.puzzle .word .pivot ~ .letter {
+  order: 1;
+  left: 50%;
+}
+
+body{
+  background-color: #3a86ff;
+}
+input{
+  background: none;
+  border:none;
+  width: 15px;
+  color: white;
+  width: 2em;
+  height: 2em;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.questions{
+height: 500px;
+width: 350px;
+background-color: white;
+position: absolute;
+left: 50px;
+font-size: 20px;
+color: #555;
+font-weight: bold;
+padding: 10px;
+text-align: center;
+padding-top: 50px;
+}
+.win{
+  width: 700px;
+  height:350px;
+  background-color: #ffbe0b;
+  position: absolute;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 350px;
+  border-radius: 20px;
+  visibility: hidden;
+}
+.close {
+  position: absolute;
+  right: 350px;
+  top: 165px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  visibility: hidden;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.next-page {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  background-color: #3a86ff;
+  border: solid #ff006e;
+  border-width: 0 20px 20px 0;
+  display: inline-block;
+  padding: 3px;
+  height: 50px;
+  width: 50px;
+position: absolute;
+  right: 50px;
+  top:250px;
+
+}
+
+</style>
+</head>
+<body>
+  <a href="index2.html"><div class="next-page"></div></a>
+  <div class="questions">
+<p>1.Top firma</p>
+<p>2.Tłuszcz jadalny w postaci zestalonej, otrzymywany ze śmietany z mleka</p>
+<p>3.Opad atmosferyczny w postaci nieforemnych bryłek lodu</p>
+<p>4.Narzędzie służące do szycia</p>
+<p>5.W transporcie kolejowym skład sprzęgniętych ze sobą wagonów lub innych pojazdów kolejowych </p>
+  </div>
+  <div class="puzzle">
+    <div class="word"> 
+      <span class="letter" id="lette1"><input type="text" maxlength="1" id="lett1" autofocus></span>
+      <span class="letter" id="lette2"><input type="text" maxlength="1" id="lett2"></span>
+      <span class="letter" id="lette3"><input type="text" maxlength="1" id="lett3"></span>
+      <span class="letter" id="lette4"><input type="text" maxlength="1" id="lett4"></span>
+      <span class="letter pivot" id="lette5"><input type="text" maxlength="1" id="lett5"></span>
+      <span class="letter" id="lette6"><input type="text" maxlength="1" id="lett6"></span>
+    </div>
+    <div class="word"> 
+      <span class="letter" id="lette7"><input type="text" maxlength="1" id="lett7"></span>
+      <span class="letter pivot" id="lette8"><input type="text" maxlength="1" id="lett8"></span>
+      <span class="letter" id="lette9"><input type="text" maxlength="1" id="lett9"></span>
+      <span class="letter" id="lette10"><input type="text" maxlength="1" id="lett10"></span>
+      <span class="letter" id="lette11"><input type="text" maxlength="1" id="lett11"></span>
+    </div>
+    <div class="word">
+      <span class="letter" id="lette12"><input type="text" maxlength="1" id="lett12"></span>
+      <span class="letter" id="lette13"><input type="text" maxlength="1" id="lett13"></span>
+      <span class="letter" id="lette14"><input type="text" maxlength="1" id="lett14" ></span>
+      <span class="letter pivot" id="lette15"><input type="text" maxlength="1" id="lett15"></span>
+    </div>
+    <div class="word">
+      <span class="letter pivot" id="lette16"><input type="text" maxlength="1" id="lett16"></span>
+      <span class="letter" id="lette17"><input type="text" maxlength="1" id="lett17"></span>
+      <span class="letter" id="lette18"><input type="text" maxlength="1" id="lett18"></span>
+      <span class="letter" id="lette19"><input type="text" maxlength="1" id="lett19"></span>
+    </div>
+    <div class="word"> 
+      <span class="letter" id="lette20"><input type="text" maxlength="1" id="lett20"></span>
+      <span class="letter pivot" id="lette21"><input type="text" maxlength="1" id="lett21"></span>
+      <span class="letter" id="lette22"><input type="text" maxlength="1" id="lett22"></span>
+      <span class="letter" id="lette23"><input type="text" maxlength="1" id="lett23"></span>
+      <span class="letter" id="lette24"><input type="text" maxlength="1" id="lett24"></span>
+      <span class="letter" id="lette25"><input type="text" maxlength="1" id="lett25"></span>
+    </div>
+  </div>
+  <div class="win" id="win">Win!</div>
+  <div class="close" id="close"></div>
+
+  <app-root></app-root>
+</body>
+</html>
+<script>
+
+setInterval(a,100);
+  var win = document.getElementById("win");
+
+function a(){
+  var wynik = 0;
+
+var lett1 = document.getElementById("lett1").value;
+let one = document.getElementById("lett1");
+let lette1 = document.getElementById("lette1");
+
+one.addEventListener('input', () => {
+  if(one.value.length > 0){
+    two.focus();
+  }
+});
+
+let lett2 = document.getElementById("lett2").value;
+let two = document.getElementById("lett2");
+let lette2 = document.getElementById("lette2");
+
+two.addEventListener('input', () => {
+  if(two.value.length > 0){
+    three.focus();
+  }
+});
+
+let lett3 = document.getElementById("lett3").value;
+let lette3 = document.getElementById("lette3");
+let three = document.getElementById("lett3");
+
+three.addEventListener('input', () => {
+  if(three.value.length > 0){
+    four.focus();
+  }
+});
+
+let lett4 = document.getElementById("lett4").value;
+let lette4 = document.getElementById("lette4");
+let four = document.getElementById("lett4");
+
+four.addEventListener('input', () => {
+  if(four.value.length > 0){
+    five.focus();
+  }
+});
+
+let lett5 = document.getElementById("lett5").value;
+let lette5 = document.getElementById("lette5");
+let five = document.getElementById("lett5");
+
+five.addEventListener('input', () => {
+  if(five.value.length > 0){
+    six.focus();
+  }
+});
+
+let lett6 = document.getElementById("lett6").value;
+let lette6 = document.getElementById("lette6");
+let six = document.getElementById("lett6");
+
+six.addEventListener('input', () => {
+  if(six.value.length > 0){
+    seven.focus();
+  }
+});
+
+let lett7 = document.getElementById("lett7").value;
+let lette7 = document.getElementById("lette7");
+let seven = document.getElementById("lett7");
+
+seven.addEventListener('input', () => {
+  if(seven.value.length > 0){
+    eight.focus();
+  }
+});
+
+let lett8 = document.getElementById("lett8").value;
+let lette8 = document.getElementById("lette8");
+let eight = document.getElementById("lett8");
+
+eight.addEventListener('input', () => {
+  if(eight.value.length > 0){
+    nine.focus();
+  }
+});
+
+let lett9 = document.getElementById("lett9").value;
+let lette9 = document.getElementById("lette9");
+let nine = document.getElementById("lett9");
+
+nine.addEventListener('input', () => {
+  if(nine.value.length > 0){
+    ten.focus();
+  }
+});
+
+let lett10 = document.getElementById("lett10").value;
+let lette10 = document.getElementById("lette10");
+let ten = document.getElementById("lett10");
+
+ten.addEventListener('input', () => {
+  if(ten.value.length > 0){
+    eleven.focus();
+  }
+});
+
+let lett11 = document.getElementById("lett11").value;
+let lette11 = document.getElementById("lette11");
+let eleven = document.getElementById("lett11");
+
+eleven.addEventListener('input', () => {
+  if(eleven.value.length > 0){
+    twelve.focus();
+  }
+});
+
+let lett12 = document.getElementById("lett12").value;
+let lette12 = document.getElementById("lette12");
+let twelve = document.getElementById("lett12");
+
+twelve.addEventListener('input', () => {
+  if(twelve.value.length > 0){
+    thirteen.focus();
+  }
+});
+
+let lett13 = document.getElementById("lett13").value;
+let lette13 = document.getElementById("lette13");
+let thirteen = document.getElementById("lett13");
+
+thirteen.addEventListener('input', () => {
+  if(thirteen.value.length > 0){
+    fourteen.focus();
+  }
+});
+
+let lett14 = document.getElementById("lett14").value;
+let lette14 = document.getElementById("lette14");
+let fourteen = document.getElementById("lett14");
+
+fourteen.addEventListener('input', () => {
+  if(fourteen.value.length > 0){
+    fifteen.focus();
+  }
+});
+
+let lett15 = document.getElementById("lett15").value;
+let lette15 = document.getElementById("lette15");
+let fifteen = document.getElementById("lett15");
+
+fifteen.addEventListener('input', () => {
+  if(fifteen.value.length > 0){
+    sixteen.focus();
+  }
+});
+
+let lett16 = document.getElementById("lett16").value;
+let lette16 = document.getElementById("lette16");
+let sixteen = document.getElementById("lett16");
+
+sixteen.addEventListener('input', () => {
+  if(sixteen.value.length > 0){
+    seventeen.focus();
+  }
+});
+
+let lett17 = document.getElementById("lett17").value;
+let lette17 = document.getElementById("lette17");
+let seventeen = document.getElementById("lett17");
+
+seventeen.addEventListener('input', () => {
+  if(seventeen.value.length > 0){
+    eighteen.focus();
+  }
+});
+
+let lett18 = document.getElementById("lett18").value;
+let lette18 = document.getElementById("lette18");
+let eighteen = document.getElementById("lett18");
+
+eighteen.addEventListener('input', () => {
+  if(eighteen.value.length > 0){
+    ninetten.focus();
+  }
+});
+
+let lett19 = document.getElementById("lett19").value;
+let lette19 = document.getElementById("lette19");
+let ninetten = document.getElementById("lett19");
+
+ninetten.addEventListener('input', () => {
+  if(ninetten.value.length > 0){
+    twenty.focus();
+  }
+});
+
+let lett20 = document.getElementById("lett20").value;
+let lette20 = document.getElementById("lette20");
+let twenty = document.getElementById("lett20");
+
+twenty.addEventListener('input', () => {
+  if(twenty.value.length > 0){
+    twentyone.focus();
+  }
+});
+
+let lett21 = document.getElementById("lett21").value;
+let lette21 = document.getElementById("lette21");
+let twentyone = document.getElementById("lett21");
+
+twentyone.addEventListener('input', () => {
+  if(twentyone.value.length > 0){
+    twentytwo.focus();
+  }
+});
+
+let lett22 = document.getElementById("lett22").value;
+let lette22 = document.getElementById("lette22");
+let twentytwo = document.getElementById("lett22");
+
+twentytwo.addEventListener('input', () => {
+  if(twentytwo.value.length > 0){
+    twentythree.focus();
+  }
+});
+
+let lett23 = document.getElementById("lett23").value;
+let lette23 = document.getElementById("lette23");
+let twentythree = document.getElementById("lett23");
+
+twentythree.addEventListener('input', () => {
+  if(twentythree.value.length > 0){
+    twentyfour.focus();
+  }
+});
+
+let lett24 = document.getElementById("lett24").value;
+let lette24 = document.getElementById("lette24");
+let twentyfour = document.getElementById("lett24");
+
+twentyfour.addEventListener('input', () => {
+  if(twentyfour.value.length > 0){
+    twentyfive.focus();
+  }
+});
+
+let lett25 = document.getElementById("lett25").value;
+let lette25 = document.getElementById("lette25");
+let twentyfive = document.getElementById("lett25");
+
+const letters = [];
+letters.push(lett1, lett2, lett3, lett4, lett5, lett6,cos);
+let word = letters.join('');
+
+const letters2 = [];
+letters2.push(lett7, lett8, lett9, lett10, lett11);
+let word2 = letters2.join('');
+
+const letters3 = [];
+letters3.push(lett12, lett13, lett14, lett15);
+let word3 = letters3.join('');
+
+const letters4 = [];
+letters4.push(lett16, lett17, lett18, lett19);
+let word4 = letters4.join('');
+
+const letters5 = [];
+letters5.push(lett20, lett21, lett22, lett23, lett24, lett25);
+let word5 = letters5.join('');
+
+const color = [];
+color.push(lette1, lette2, lette3, lette4, lette6);
+
+const color2 = [];
+color2.push(lette7, lette9, lette10, lette11);
+
+const color3 = [];
+color3.push(lette12, lette13, lette14);
+
+const color4 = [];
+color4.push( lette17, lette18, lette19);
+
+const color5 = [];
+color5.push(lette20, lette22, lette23, lette24, lette25);
+
+
+    if(word=="xoperot"){
+  lette5.setAttribute("style", "background-color:#008000")
+  for(let i=0;i<5;i++){    
+    color[i].setAttribute("style","background-color:#38b000");
+  }; 
+wynik = wynik + 1;
+}
+  
+if(word2=="masło"){
+   lette8.setAttribute("style", "background-color:#008000");
+  for(let i=0;i<4;i++){
+    color2[i].setAttribute("style","background-color:#38b000");
+  }
+  wynik = wynik + 1;
+};
+
+if(word3=="grad"){
+    lette15.setAttribute("style", "background-color:#008000");
+  for(let i=0;i<3;i++){
+    color3[i].setAttribute("style","background-color:#38b000");
+  }
+  wynik = wynik + 1;
+};
+
+if(word4=="igła"){
+      lette16.setAttribute("style", "background-color:#008000");
+  for(let i=0;i<3;i++){
+    color4[i].setAttribute("style","background-color:#38b000");
+  }
+  wynik = wynik + 1;
+};
+
+if(word5=="pociąg"){
+      lette21.setAttribute("style", "background-color:#008000");
+  for(let i=0;i<5;i++){
+    color5[i].setAttribute("style","background-color:#38b000");
+  }
+  wynik = wynik + 1;
+};
+if(wynik==5){
+win.setAttribute("style","visibility: visible;");
+x.setAttribute("style","visibility: visible;")  
+  }
+  document.getElementById("close").addEventListener("click", e=>{
+    win.setAttribute("style","visibility: hidden;");
+  x.setAttribute("style","visibility: hidden;")
+cos = "x"  
+});
+}
+  var x = document.getElementById("close");
+  var cos = "t";
+
+</script> 
