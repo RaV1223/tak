@@ -1,1 +1,1 @@
-"# tak" 
+sprzedam opla 
